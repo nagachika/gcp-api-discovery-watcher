@@ -1,10 +1,6 @@
-lib = File.expand_path("lib", __dir__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "gcp/api/discovery/watcher/version"
-
 Gem::Specification.new do |spec|
   spec.name          = "gcp-api-discovery-watcher"
-  spec.version       = Gcp::Api::Discovery::Watcher::VERSION
+  spec.version       = "0.0.1"
   spec.authors       = ["nagachika"]
   spec.email         = ["nagachika@ruby-lang.org"]
 

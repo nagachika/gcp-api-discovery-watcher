@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
 
 require "gcp/api/discovery/watcher"
+
+app = Gcp::Api::Discovery::Watcher.new
+
+app.run(ARGV)

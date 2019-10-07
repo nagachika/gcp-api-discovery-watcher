@@ -1,9 +1,9 @@
 RSpec.describe Gcp::Api::Discovery::Watcher do
-  it "has a version number" do
-    expect(Gcp::Api::Discovery::Watcher::VERSION).not_to be nil
+  before do
+    @watcher = Gcp::Api::Discovery::Watcher.new
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "#fetch_discover_api" do
+    expect(@watcher.fetch_discover_api("bigquery", "v2")).to be_instance_of(Gcp::Api::Discovery::Watcher::ApiMetadata)
   end
 end

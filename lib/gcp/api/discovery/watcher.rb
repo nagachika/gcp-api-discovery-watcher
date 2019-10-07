@@ -38,6 +38,9 @@ module Gcp
             opt.on("--storage DIR") do |dir|
               conf[:dir] = dir
             end
+            opt.on("--output FILE") do |file|
+              conf[:output_file] = file
+            end
             opt.parse!
           }
           conf
@@ -77,7 +80,13 @@ module Gcp
                 write_current = true
               end
               puts "API #{conf[:api]}_#{conf[:version]}: revision #{previous.revision} -> #{new_metadata.revision}"
-              DiffHash.diff_hash(previous, new_metadata)
+              if conf[:output_file].nil? or conf[:output_file] == "-"
+                DiffHash.diff_hash(previous, new_metadata, $stdout)
+              else
+                open(conf[:output_file], "wb") do |f|
+                  DiffHash.diff_hash(previous, new_metadata, f)
+                end
+              end
             end
           else
             puts "New API #{conf[:api]}_#{conf[:version]}"
